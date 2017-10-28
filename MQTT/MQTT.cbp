@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="MQTT"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\lua\;CMake Files\lua\src\;CMake Files\MQTT\;CMake Files\sqlite\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mqtt">
+				<Option output="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/libmqtt.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DWITH_TLS"/>
+					<Add directory="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT"/>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 mqtt"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mqtt/fast">
+				<Option output="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/libmqtt.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DWITH_TLS"/>
+					<Add directory="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT"/>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 mqtt/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/logging_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/logging_mosq.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/memory_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/memory_mosq.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/messages_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/messages_mosq.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/mosquitto.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/mosquitto.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/mosquittopp.cpp">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/mosquittopp.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/net_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/net_mosq.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/read_handle.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/read_handle.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/read_handle_client.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/read_handle_shared.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/send_client_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/send_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/send_mosq.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/socks_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/socks_mosq.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/srv_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/thread_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/time_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/time_mosq.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/tls_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/tls_mosq.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/util_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/util_mosq.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/will_mosq.c">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/will_mosq.h">
+			<Option target="mqtt"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/lua/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lua\"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/lua/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lua\"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/lua/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lua\src\"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/lua/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lua\src\"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\MQTT\"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/MQTT/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\MQTT\"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/sqlite/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\sqlite\"/>
+		</Unit>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/sqlite/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\sqlite\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

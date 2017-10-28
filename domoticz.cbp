@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="domoticz"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="package">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 package"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="domoticz_gch">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 domoticz_gch"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="domoticz">
+				<Option output="/home/simon/Dropbox/domoticz-master_24_7_17/domoticz" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBUILTIN_MQTT"/>
+					<Add option="-DENABLE_PYTHON"/>
+					<Add option="-DHAVE_EXECINFO_H"/>
+					<Add option="-DHAVE_LINUX_I2C"/>
+					<Add option="-DHAVE_LINUX_SPI"/>
+					<Add option="-DWITH_LIBUSB"/>
+					<Add option="-DWWW_ENABLE_SSL"/>
+					<Add option="-DWITH_GPIO"/>
+					<Add directory="/usr/include/python3.5m"/>
+					<Add directory="/home/simon/Dropbox/domoticz-master_24_7_17/main"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 domoticz"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="domoticz/fast">
+				<Option output="/home/simon/Dropbox/domoticz-master_24_7_17/domoticz" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBUILTIN_MQTT"/>
+					<Add option="-DENABLE_PYTHON"/>
+					<Add option="-DHAVE_EXECINFO_H"/>
+					<Add option="-DHAVE_LINUX_I2C"/>
+					<Add option="-DHAVE_LINUX_SPI"/>
+					<Add option="-DWITH_LIBUSB"/>
+					<Add option="-DWWW_ENABLE_SSL"/>
+					<Add option="-DWITH_GPIO"/>
+					<Add directory="/usr/include/python3.5m"/>
+					<Add directory="/home/simon/Dropbox/domoticz-master_24_7_17/main"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 domoticz/fast"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="revisiontag">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 revisiontag"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="package_source">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 package_source"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command=" -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/simon/Dropbox/domoticz-master_24_7_17/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
