@@ -98,6 +98,7 @@ define(['app'], function (app) {
 			});
 		}
 
+		var valDoubleSlider = new Array();
 		RefreshFavorites = function () {
 			if (typeof $scope.mytimer != 'undefined') {
 				$interval.cancel($scope.mytimer);
@@ -885,11 +886,33 @@ define(['app'], function (app) {
 											}
 										}
 										if (isdimmer == true) {
-											var dslider = $(id + " #slider");
-											if (typeof dslider != 'undefined') {
-												dslider.slider("value", item.LevelInt + 1);
+											if(item.SubType.indexOf("_2Color")==0)
+											{
+												if(!item.hasOwnProperty("LevelInt1")){
+													item.LevelInt1=item.LevelInt;
+												}
+												
+												if(!item.hasOwnProperty("LevelInt2")){
+													item.LevelInt2=item.LevelInt;
+												}
+												var dslider = $(id + " #slider1");
+												if (typeof dslider != 'undefined') {
+													dslider.slider("value", item.LevelInt1 + 1);
+												}
+												var dslider = $(id + " #slider2");
+												if (typeof dslider != 'undefined') {
+													dslider.slider("value", item.LevelInt2 + 1);
+												}
+											}
+											else
+											{
+												var dslider = $(id + " #slider");
+												if (typeof dslider != 'undefined') {
+													dslider.slider("value", item.LevelInt + 1);
+												}
 											}
 										}
+										
 										if (item.SwitchType === "Selector") {
 											var selector$ = $("#selector" + item.idx);
 											if (typeof selector$ !== 'undefined') {
@@ -2551,6 +2574,7 @@ define(['app'], function (app) {
 											else if (item.SubType.indexOf("RGBW") >= 0) {
 												xhtm += '\t      <td id="img" class="img img1"><img src="images/RGB48_On.png" onclick="ShowRGBWPopup(event, ' + item.idx + ', \'RefreshFavorites\',' + item.Protected + ',' + item.MaxDimLevel + ',' + item.LevelInt + ',' + item.Hue + ');" class="lcursor" height="40" width="40"></td>\n';
 											}
+							
 											else {
 												xhtm += '\t      <td id="img" class="img img1"><img src="images/' + item.Image + '48_On.png" title="' + $.t("Turn Off") + '" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40"></td>\n';
 											}
@@ -2654,7 +2678,19 @@ define(['app'], function (app) {
 									if (item.SwitchType == "Dimmer") {
 										if ((item.SubType.indexOf("RGBW") >= 0) || (item.SubType == "RGB")) {
 										}
-										else {
+										else if (item.SubType.indexOf("_2Color") >= 0){
+											if(!item.hasOwnProperty("LevelInt1")){
+												item.LevelInt1=item.LevelInt;
+											}
+											
+											if(!item.hasOwnProperty("LevelInt2")){
+												item.LevelInt2=item.LevelInt;
+											}
+											xhtm+='<td><br><div id="containerslider" style="width:auto; margin-left:50px"> ';
+											xhtm+='<div style="float:left; margin-right:7px"  class="dimsliderdouble" id="slider1" data-num="0" data-idx="' + item.idx + '" data-type="norm" data-maxlevel="' + item.MaxDimLevel + '" data-isprotected="' + item.Protected + '" data-svalue="' + item.LevelInt1 + '"></div>';
+											xhtm+='<div style="float:right; margin-right:7px" class="dimsliderdouble" id="slider2" data-num="1" data-idx="' + item.idx + '" data-type="norm" data-maxlevel="' + item.MaxDimLevel + '" data-isprotected="' + item.Protected + '" data-svalue="' + item.LevelInt2 + '"></div></td>';
+										}
+										else{
 											xhtm += '<td><div style="margin-left:50px; margin-top: 0.2em;" class="dimslider dimslidernorm" id="slider" data-idx="' + item.idx + '" data-type="norm" data-maxlevel="' + item.MaxDimLevel + '" data-isprotected="' + item.Protected + '" data-svalue="' + item.LevelInt + '"></div></td>';
 										}
 									}
@@ -4026,6 +4062,84 @@ define(['app'], function (app) {
 			});
 
 			$rootScope.RefreshTimeAndSun();
+			
+			//Create Dimmer Sliders for double Dimmer Sliders
+			$('#dashcontent .dimsliderdouble').slider({
+				//Config
+				range: "min",
+				min: 1,
+				max: 16,
+				value: 5,
+ 
+				//Slider Events
+				create: function(event,ui ) {
+					$( this ).slider( "option", "max", $( this ).data('maxlevel')+1);
+					$( this ).slider( "option", "type", $( this ).data('type'));
+					$( this ).slider( "option", "isprotected", $( this ).data('isprotected'));
+					$( this ).slider( "value", $( this ).data('svalue')+1 );
+					if($( this ).data('disabled'))
+						$( this ).slider( "option", "disabled", true );
+					ui.onresize = function(){
+						$( "#log" ).append( "<div>Handler for .resize() called.</div>" );
+					};
+					
+				},
+				slide: function(event, ui) { //When the slider is sliding
+				clearInterval($.setDimValue);
+					var maxValue=$( this ).slider( "option", "max");
+					var dtype=$( this ).slider( "option", "type");
+					var isProtected=$( this ).slider( "option", "isprotected");
+					var idx=$( this ).data('idx');
+					var num=$( this ).data('num');
+					valDoubleSlider[idx+"_"+num]=ui.value-1;
+					var fPercentage=parseInt((100.0/(maxValue-1))*(valDoubleSlider[idx+'_0']));
+					id="#lightcontent #" + idx;
+					var obj=$(id);
+					if (typeof obj != 'undefined') {
+						var img="";
+						var imgname = $('#light_' + idx + ' .lcursor').prop('src');
+						imgname = imgname.substring(imgname.lastIndexOf("/") + 1, imgname.lastIndexOf("_O") + 2);
+						if (dtype == "relay")
+							imgname="Fireplace48_O"
+						var bigtext;
+						if (fPercentage==0)
+						{
+							img='<img src="images/'+imgname+'ff.png" title="' + $.t("Turn On") + '" onclick="SetColValue(' + idx + ','+valDoubleSlider[idx+'_1']+'50,false); );" class="lcursor" height="48" width="48">';
+							bigtext="Off";
+						}
+						else {
+							img='<img src="images/'+imgname+'n.png" title="' + $.t("Turn Off") +'" onclick="SetColValue(' + idx + ','+valDoubleSlider[idx+'_1']+'0,false); );" class="lcursor" height="48" width="48">';
+							bigtext=fPercentage + " %";
+						}
+						if (dtype!="blinds") {
+							if ($(id + " #img").html()!=img) {
+								$(id + " #img").html(img);
+							}
+						}
+						if ($(id + " #bigtext").html()!=bigtext) {
+							$(id + " #bigtext").html(bigtext);
+						}
+						
+					}
+					if (dtype!="relay")
+					{
+						$.setDimValue = setInterval(function() { 
+							clearInterval($.setDimValue);
+							SetColValue(idx,valDoubleSlider[idx+'_1'],valDoubleSlider[idx+'_0'],false); 
+						}, 500);
+					}
+				},
+				stop: function(event, ui) {
+					var idx=$( this ).data('idx');
+					var dtype=$( this ).slider( "option", "type");
+					if (dtype=="relay")
+					{
+						clearInterval($.setDimValue);
+						valDoubleSlider[idx+"_"+num]=ui.value;
+						SetColValue(idx,valDoubleSlider[idx+'_1'],valDoubleSlider[idx+'_0'],false); 
+					}
+				}
+			});
 
 			//Create Dimmer Sliders
 			$('#dashcontent .dimslider').slider({
@@ -4235,7 +4349,7 @@ define(['app'], function (app) {
 			}, 10000);
 		}
 
-		$scope.ResizeDimSliders = function () {
+		/*$scope.ResizeDimSliders = function () {
 			var nobj = $("#dashcontent #name");
 			if (typeof nobj == 'undefined') {
 				return;
@@ -4256,8 +4370,19 @@ define(['app'], function (app) {
 			$("#dashcontent .mobileitem .dimslidersmall").width(width);
 
 			width = $("#dashcontent #name").width() - 85;
-			$("#dashcontent .span4 .dimslidersmalldouble").width(width);
-			$("#dashcontent .span3 .dimslidersmalldouble").width(width);
+			$("#dashcontent .span4 .dimslidersmalldouble").width(width/2-6);
+			$("#dashcontent .span3 .dimslidersmalldouble").width(width/2-6);
+		}*/
+		
+		$scope.ResizeDimSliders = function () {
+			var nobj = $("#dashcontent #name");
+			if (typeof nobj == 'undefined') {
+				return;
+			}
+			var width = nobj.width() - 50;
+			$("#dashcontent .dimslider").width(width);
+			$("#dashcontent .dimsmall").width(width - 48);
+			$("#dashcontent .dimsliderdouble").width(width/2-6);
 		}
 
 		init();

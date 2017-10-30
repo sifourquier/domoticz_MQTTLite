@@ -1,4 +1,4 @@
-m#include "stdafx.h"
+#include "stdafx.h"
 #include "Comm5Serial.h"
 #include "../main/Logger.h"
 #include "../main/Helper.h"

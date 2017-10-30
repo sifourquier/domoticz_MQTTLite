@@ -2516,7 +2516,7 @@ define(['app'], function (app) {
 									}
 								}
 								if (isdimmer == true) {
-								if(item.SubType.indexOf("_2Color")==0)
+									if(item.SubType.indexOf("_2Color")==0)
 									{
 										if(!item.hasOwnProperty("LevelInt1")){
 											item.LevelInt1=item.LevelInt;

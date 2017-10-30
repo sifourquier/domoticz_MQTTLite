@@ -294,6 +294,7 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 			{
 				value|=(unsigned char)data[2+l]<<((3-l)*8);
 			}
+			std::ostringstream ss;
 			switch(type)
 			{
 				case SWITCH:
