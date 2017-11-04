@@ -298,7 +298,7 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 			switch(type)
 			{
 				case SWITCH:
-					/*if(value) //test sans
+					if(value) //test sans
 					{
 						svalue="100";
 						nvalue=1;
@@ -308,10 +308,12 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 						svalue="0";
 						nvalue=0;
 					}
-				break;*/
+				break;
 				case POURCENT:
+					nvalue=value;
 					ss << value;
 					svalue=ss.str();
+
 				break;
 				case BATTERY:
 					update=1;
