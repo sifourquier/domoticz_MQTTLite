@@ -189,7 +189,7 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 	if(type==POWER)
 		name=name+"_"; //pour differentier le capteur de l'interrupter
 
-	result = m_sql.safe_query("SELECT HardwareID, ID, Unit, Type, SubType, DeviceID, svalue, BatteryLevel, nvalue FROM DeviceStatus WHERE (Name='%q')", name.c_str());
+	result = m_sql.safe_query("SELECT HardwareID, ID, Unit, Type, SubType, DeviceID, svalue, BatteryLevel, nvalue, LastUpdate FROM DeviceStatus WHERE (Name='%q')", name.c_str());
 
 	if (result.empty())
 	{
@@ -207,7 +207,8 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 		std::string svalue =result[l][6];
 		int batterylevel = atoi(result[l][7].c_str());
 		bool bParseTrigger =true;
-		int nvalue=atoi(result[l][8].c_str());;
+		int nvalue=atoi(result[l][8].c_str());
+		std::string sLastUpdate=result[l][9];
 		//"0.0;50;1;1010;1"
 
 		if(devType==pTypeTEMP_HUM_BARO_VOLT)
@@ -261,7 +262,7 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 		if(devType==pTypeGeneral && subType==sTypeKwh)
 		{
 			update=1;
-			std::vector<std::string> svaluesplit=split(svalue,';'); //split les valeurs temperature, humidité, humidité status, presion, presion status , tension
+			std::vector<std::string> svaluesplit=split(svalue,';'); //split les valeurs
 			svaluesplit.resize(2);
 
 			int value =0;
@@ -277,6 +278,19 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 					ss << value/1000.f;
 					svaluesplit[0]=ss.str();
 					nvalue=value/1000;
+
+					float value_kwh=atof(svaluesplit[1].c_str());
+					struct tm ntime;
+					time_t lutime;
+					ParseSQLdatetime(lutime, ntime, sLastUpdate); //not perfect why he don't count time betwen her and when update in database
+					time_t now = time(0);
+					int dt=difftime(now,lutime);
+					value_kwh+=value/1000.f/60/60*dt;
+					std::ostringstream ss2;
+					ss2.precision(7);
+					ss2 << value_kwh;
+					svaluesplit[1]=ss2.str();
+
 				break;
 				/*case POWER:
 					ss << value/100.f;
