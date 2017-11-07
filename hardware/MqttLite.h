@@ -11,6 +11,8 @@
 #endif
 #endif
 
+#include <chrono>
+
 #define MAX_LENGTH_STATION_NAME 32
 
 class MQTT_Lite : public CDomoticzHardwareBase, mosqpp::mosquittopp
@@ -45,6 +47,7 @@ private:
 	void SendDeviceInfo(const int m_HwdID, const unsigned long long DeviceRowIdx, const std::string &DeviceName, const unsigned char *pRXCommand);
 	void SendSceneInfo(const unsigned long long SceneIdx, const std::string &SceneName);
 protected:
+	std::map<int,std::chrono::high_resolution_clock::time_point> old_time;
 	std::string m_szIPAddress;
 	unsigned short m_usIPPort;
 	std::string m_UserName;

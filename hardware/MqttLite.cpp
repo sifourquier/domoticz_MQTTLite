@@ -200,6 +200,7 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 	{
 		int HardwareID = atoi(result[l][0].c_str());
 		//std::string idx = result[0][1];
+		int idx= atoi(result[l][1].c_str());
 		int unit = atoi(result[l][2].c_str());
 		int devType = atoi(result[l][3].c_str());
 		int subType = atoi(result[l][4].c_str());
@@ -283,9 +284,22 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 					struct tm ntime;
 					time_t lutime;
 					ParseSQLdatetime(lutime, ntime, sLastUpdate); //not perfect why he don't count time betwen her and when update in database
-					time_t now = time(0);
-					int dt=difftime(now,lutime);
+					std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+					float dt;
+					if(old_time.find(idx) != old_time.end())
+					{
+						std::chrono::duration<double> delta = std::chrono::duration_cast<std::chrono::duration<double>>(now-old_time[idx]);
+						dt=delta.count();
+						if(dt>90*60) //if now info duiring more of 1h30 do not count
+						{
+							dt=0;
+						}
+					}
+					else
+						dt=0;
+					old_time[idx]=now;
 					value_kwh+=value/1000.f/60/60*dt;
+					printf("dt =%f\n",dt);
 					std::ostringstream ss2;
 					ss2.precision(7);
 					ss2 << value_kwh;
