@@ -11,10 +11,10 @@
 				<Option working_dir="/home/simon/Dropbox/domoticz-master_24_7_17/lua"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/ninja -v all"/>
+					<CompileFile command="/usr/bin/ninja -v &quot;$file&quot;"/>
+					<Clean command="/usr/bin/ninja -v clean"/>
+					<DistClean command="/usr/bin/ninja -v clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lua">
@@ -35,10 +35,10 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/src/Makefile&quot;  VERBOSE=1 lua"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/src/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/ninja -v lua"/>
+					<CompileFile command="/usr/bin/ninja -v &quot;$file&quot;"/>
+					<Clean command="/usr/bin/ninja -v clean"/>
+					<DistClean command="/usr/bin/ninja -v clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lua/fast">
@@ -59,10 +59,10 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/src/Makefile&quot;  VERBOSE=1 lua/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/src/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/simon/Dropbox/domoticz-master_24_7_17/lua/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/ninja -v lua/fast"/>
+					<CompileFile command="/usr/bin/ninja -v &quot;$file&quot;"/>
+					<Clean command="/usr/bin/ninja -v clean"/>
+					<DistClean command="/usr/bin/ninja -v clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
