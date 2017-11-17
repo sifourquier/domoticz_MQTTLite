@@ -359,6 +359,7 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 
 		if(update)
 		{
+			_log.Log(LOG_TRACE, "batterylevel=%d\n",batterylevel);
 			if (!m_mainworker.UpdateDevice(HardwareID, stringDeviceID, unit, devType, subType, nvalue, svalue, signallevel, batterylevel, bParseTrigger))
 			{
 				_log.Log(LOG_ERROR, "MQTT_Lite: Problem updating sensor (check idx, hardware enabled)");
