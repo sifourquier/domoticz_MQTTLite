@@ -31,6 +31,8 @@
 #include "../notifications/NotificationHelper.h"
 #include "appversion.h"
 #include "localtime_r.h"
+#include <dlfcn.h>
+
 
 #if defined WIN32
 	#include "../msbuild/WindowsHelper.h"
@@ -210,7 +212,17 @@ void signal_handler(int sig_num)
 		signal(sig_num, SIG_DFL);
 		raise(sig_num);
 		break;
-	} 
+
+	case SIGUSR1:
+		fprintf(stderr, "Exiting on SIGUSR1\n");
+		void (*_mcleanup)(void);
+		_mcleanup = (void (*)(void))dlsym(RTLD_DEFAULT, "_mcleanup");
+		if (_mcleanup == NULL)
+			 fprintf(stderr, "Unable to find gprof exit hook\n");
+		else _mcleanup();
+		_exit(0);
+		break;
+	}
 }
 
 #ifndef WIN32

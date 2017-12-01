@@ -299,7 +299,7 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 						dt=0;
 					old_time[idx]=now;
 					value_kwh+=value/1000.f/60/60*dt;
-					printf("dt =%f\n",dt);
+					//printf("dt =%f\n",dt);
 					std::ostringstream ss2;
 					ss2.precision(7);
 					ss2 << value_kwh;
