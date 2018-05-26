@@ -262,9 +262,8 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 
 		if(devType==pTypeHUM)
 		{
+
 			update=1;
-			std::vector<std::string> svaluesplit=split(svalue,';'); //split les valeurs temperature, humidité, humidité status, presion, presion status , tension
-			svaluesplit.resize(6);
 
 			int value =0;
 			for(int l=0;l<4;l++)
@@ -280,13 +279,12 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 						value=100*100;
 					else if(value<0)
 						value=0;
+					nvalue=value/100;
 
 					ss << value/100.f;
-					svaluesplit[0]=ss.str();
+					svalue=ss.str();
 				break;
 			}
-
-			svalue=join(svaluesplit,';');
 		}
 
 		if(devType==pTypeGeneral && subType==sTypeKwh)
@@ -784,7 +782,7 @@ namespace http {
 			std::vector<std::vector<std::string> > result;
 			result = m_sql.safe_query("SELECT MAX(ID) FROM DeviceStatus");
 
-			unsigned long nid = 1; //could be the first device ever
+			unsigned long nid = 0; //could be the first device ever
 
 			if (result.size() > 0)
 			{
