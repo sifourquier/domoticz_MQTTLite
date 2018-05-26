@@ -260,6 +260,35 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 			svalue=join(svaluesplit,';');
 		}
 
+		if(devType==pTypeHUM)
+		{
+			update=1;
+			std::vector<std::string> svaluesplit=split(svalue,';'); //split les valeurs temperature, humidité, humidité status, presion, presion status , tension
+			svaluesplit.resize(6);
+
+			int value =0;
+			for(int l=0;l<4;l++)
+			{
+				value|=(unsigned char)data[2+l]<<((3-l)*8);
+			}
+			std::ostringstream ss;
+
+			switch(type)
+			{
+				case HUMIDITY:
+					if(value>100*100)
+						value=100*100;
+					else if(value<0)
+						value=0;
+
+					ss << value/100.f;
+					svaluesplit[0]=ss.str();
+				break;
+			}
+
+			svalue=join(svaluesplit,';');
+		}
+
 		if(devType==pTypeGeneral && subType==sTypeKwh)
 		{
 			update=1;
@@ -817,6 +846,15 @@ namespace http {
 				m_sql.safe_query("UPDATE DeviceStatus SET Options='%q', Name='%q' , Used=1 , SwitchType=%d WHERE (ID==%llu)", ssensorname.c_str(), ssensorname.c_str(), STYPE_Dimmer, DeviceRowIdx);
 				bCreated = true;
 				m_mainworker.m_eventsystem.GetCurrentStates();
+				}
+				break;
+			case 5:
+				//Meteo
+				{
+					DeviceRowIdx=m_sql.UpdateValue(HwdID, rID.c_str(), 1, pTypeHUM, sTypeTHB1, 12, 255, 0, "0", devname);
+					m_sql.safe_query("UPDATE DeviceStatus SET Options='%q', Name='%q' , Used=1 WHERE (ID==%llu)", ssensorname.c_str(),ssensorname.c_str(), DeviceRowIdx);
+					bCreated = true;
+					m_mainworker.m_eventsystem.GetCurrentStates();
 				}
 				break;
 			}
