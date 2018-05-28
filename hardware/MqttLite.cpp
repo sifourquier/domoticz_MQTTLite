@@ -215,7 +215,7 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 		if(devType==pTypeTEMP_HUM_BARO_VOLT)
 		{
 			update=1;
-			std::vector<std::string> svaluesplit=split(svalue,';'); //split les valeurs temperature, humidité, humidité status, presion, presion status , tension
+			std::vector<std::string> svaluesplit=split(svalue,';'); //split les valeurs temperature, humidit?, humidit? status, presion, presion status , tension
 			svaluesplit.resize(6);
 
 			int value =0;
@@ -378,6 +378,34 @@ void MQTT_Lite::on_message(const struct mosquitto_message *message)
 						batterylevel=100;
 					if(batterylevel<0)
 						batterylevel=0;
+				break;
+			}
+		}
+
+		if(devType==pTypeGeneral && subType==sTypeCustom)
+		{
+			update=1;
+			int value=0;
+			for(int l=0;l<4;l++)
+			{
+				value|=(unsigned char)data[2+l]<<((3-l)*8);
+			}
+			std::ostringstream ss;
+			switch(type)
+			{
+				case BATTERY:
+					update=1;
+					batterylevel=value/(value/1800+1);
+					batterylevel=(batterylevel-1200)/3.1;
+					if(batterylevel>100)
+						batterylevel=100;
+					if(batterylevel<0)
+						batterylevel=0;
+				break;
+				default:
+					nvalue=value;
+					ss << value;
+					svalue=ss.str();
 				break;
 			}
 		}
@@ -847,7 +875,7 @@ namespace http {
 				}
 				break;
 			case 5:
-				//Meteo
+				//humidity
 				{
 					DeviceRowIdx=m_sql.UpdateValue(HwdID, rID.c_str(), 1, pTypeHUM, sTypeTHB1, 12, 255, 0, "0", devname);
 					m_sql.safe_query("UPDATE DeviceStatus SET Options='%q', Name='%q' , Used=1 WHERE (ID==%llu)", ssensorname.c_str(),ssensorname.c_str(), DeviceRowIdx);
