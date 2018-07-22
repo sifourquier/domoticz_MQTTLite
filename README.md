@@ -1,3 +1,18 @@
+# domoticz_MQTTLite
+https://github.com/sifourquier/domoticz_MQTTLite
+
+a fork of domoticz for use with can have bug with other hardware
+
+https://github.com/sifourquier/domotic_esp
+and
+https://github.com/sifourquier/domotic_esp_hardware
+
+if you have to many cryptocurrency and you like my job :)
+burst
+BURST-XGXT-HNPP-GSKZ-4H4FV
+Ether
+0xE501E12a8A6A6b4eA3B48fcbB026f371a7Cc14BC
+
 # Domoticz
 
 Domoticz is a Home Automation System that lets you monitor and configure various devices like: Lights, Switches, various sensors/meters like Temperature, Rain, Wind, UV, Electra, Gas, Water and much more. Notifications/Alerts can be sent to any mobile device
